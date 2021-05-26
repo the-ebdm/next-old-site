@@ -1,4 +1,5 @@
 import 'tailwindcss/tailwind.css'
+import 'react-code-container/dist/index.css'
 import Layout from '../components/Structure/layout'
 import firebase from "../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -6,6 +7,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 
 const auth = firebase.auth();
+
 
 function MyApp({ Component, pageProps }) {
   const [user, loading, error] = useAuthState(auth);
@@ -19,14 +21,14 @@ function MyApp({ Component, pageProps }) {
       remoteConfig.settings.minimumFetchIntervalMillis = 500 * 1000;
       await remoteConfig.fetchAndActivate();
       remoteConfig.defaultConfig = {
-        welcome_message: "Welcome",
+        homepagetitle: "EBDM",
       };
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-      gtag("config", "G-7GXMV2MRBV");
+      gtag("config", "G-TD3MWMJRVD");
       setRemoteConfig(remoteConfig);
       setAnalytics(analytics);
     }
@@ -49,8 +51,8 @@ function MyApp({ Component, pageProps }) {
     }
   }, [loading]);
   return (
-    <Layout>
-      <Component {...pageProps} />
+    <Layout remoteConfig={remoteConfig} user={user}>
+      <Component {...pageProps} remoteConfig={remoteConfig} user={user}/>
     </Layout>
   )
 }

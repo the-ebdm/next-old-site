@@ -32,7 +32,7 @@ export default function Footer({ footerNavigation }) {
         </div>
 
         <div className="mt-12 border-t border-gray-200 py-8">
-          <p className="text-base text-gray-400 xl:text-center">
+          <p className="text-base text-gray-400 text-center">
             &copy; 2021 Eric Muir
           </p>
         </div>

@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
 import {
   CloudUploadIcon,
   CogIcon,
@@ -9,34 +9,23 @@ import {
   ServerIcon,
   ShieldCheckIcon,
   XIcon,
-} from '@heroicons/react/outline'
-import { ChevronRightIcon, ExternalLinkIcon } from '@heroicons/react/solid'
-import Footer from './footer'
+} from "@heroicons/react/outline";
+import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/react/solid";
+import Footer from "./footer";
+import Link from "next/link";
 
 const navigation = [
-  { name: 'Home', href: '#' },
-  { name: 'Blog', href: '#' },
+  { name: "Home", href: "/" },
+  { name: "Blog", href: "/blog" },
+  { name: "CV", href: "/cv" },
   // { name: 'Projects', href: '#' },
-]
+];
 
 const footerNavigation = {
   social: [
-    // {
-    //   name: 'Facebook',
-    //   href: '#',
-    //   icon: (props) => (
-    //     <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-    //       <path
-    //         fillRule="evenodd"
-    //         d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-    //         clipRule="evenodd"
-    //       />
-    //     </svg>
-    //   ),
-    // },
     {
-      name: 'Instagram',
-      href: '#',
+      name: "Instagram",
+      href: "#",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -48,8 +37,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: 'Twitter',
-      href: '#',
+      name: "Twitter",
+      href: "#",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
@@ -57,8 +46,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: 'GitHub',
-      href: 'https://ln.ebdm.dev/Iji1o',
+      name: "GitHub",
+      href: "https://ln.ebdm.dev/Iji1o",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -82,131 +71,151 @@ const footerNavigation = {
     //     </svg>
     //   ),
     // },
+		// {
+    //   name: 'Facebook',
+    //   href: '#',
+    //   icon: (props) => (
+    //     <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+    //       <path
+    //         fillRule="evenodd"
+    //         d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+    //         clipRule="evenodd"
+    //       />
+    //     </svg>
+    //   ),
+    // },
   ],
-}
+};
 
 export default function Layout({ children }) {
   return (
     <div className="bg-white">
       <div className="relative overflow-hidden">
-        <Popover as="header" className="relative">
-          {({ open }) => (
-            <>
-              <div className="bg-gray-900 pt-6">
-                <nav
-                  className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
-                  aria-label="Global"
-                >
-                  <div className="flex items-center flex-1">
-                    <div className="flex items-center justify-between w-full md:w-auto">
-                      <a href="#">
-                        <span className="sr-only">Workflow</span>
-                        <img
-                          className="h-8 w-auto sm:h-10"
-                          src="https://tailwindui.com/img/logos/workflow-mark-teal-200-cyan-400.svg"
-                          alt=""
-                        />
-                      </a>
-                      <div className="-mr-2 flex items-center md:hidden">
-                        <Popover.Button className="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white">
-                          <span className="sr-only">Open main menu</span>
-                          <MenuIcon className="h-6 w-6" aria-hidden="true" />
-                        </Popover.Button>
-                      </div>
-                    </div>
-                    <div className="hidden space-x-8 md:flex md:ml-10">
-                      {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className="text-base font-medium text-white hover:text-gray-300"
-                        >
-                          {item.name}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="hidden md:flex md:items-center md:space-x-6">
-                    <a href="#" className="text-base font-medium text-white hover:text-gray-300">
-                      Log in
-                    </a>
-                  </div>
-                </nav>
-              </div>
+        {Navbar}
 
-              <Transition
-                show={open}
-                as={Fragment}
-                enter="duration-150 ease-out"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="duration-100 ease-in"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Popover.Panel
-                  focus
-                  static
-                  className="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden"
-                >
-                  <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
-                    <div className="px-5 pt-4 flex items-center justify-between">
-                      <div>
-                        <img
-                          className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/workflow-mark-teal-500-cyan-600.svg"
-                          alt=""
-                        />
-                      </div>
-                      <div className="-mr-2">
-                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600">
-                          <span className="sr-only">Close menu</span>
-                          <XIcon className="h-6 w-6" aria-hidden="true" />
-                        </Popover.Button>
-                      </div>
-                    </div>
-                    <div className="pt-5 pb-6">
-                      <div className="px-2 space-y-1">
-                        {navigation.map((item) => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                          >
-                            {item.name}
-                          </a>
-                        ))}
-                      </div>
-                      <div className="mt-6 px-5">
-                        <a
-                          href="#"
-                          className="block text-center w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700"
-                        >
-                          Start free trial
-                        </a>
-                      </div>
-                      <div className="mt-6 px-5">
-                        <p className="text-center text-base font-medium text-gray-500">
-                          Existing customer?{' '}
-                          <a href="#" className="text-gray-900 hover:underline">
-                            Login
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Popover.Panel>
-              </Transition>
-            </>
-          )}
-        </Popover>
-      
-													
-				
-				{ children }
+        {children}
 
-        <Footer footerNavigation={footerNavigation}/>
+        <Footer footerNavigation={footerNavigation} />
       </div>
     </div>
-  )
+  );
 }
+
+const Navbar = (
+  <Popover as="header" className="relative pb-4 bg-gray-900">
+    {({ open }) => (
+      <>
+        <div className="pt-6">
+          <nav
+            className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
+            aria-label="Global"
+          >
+            <div className="flex items-center flex-1">
+              <div className="flex items-center justify-between w-full md:w-auto">
+                <a href="#">
+                  <span className="sr-only">Workflow</span>
+                  <img
+                    className="h-8 w-auto sm:h-10"
+                    src="https://tailwindui.com/img/logos/workflow-mark-teal-200-cyan-400.svg"
+                    alt=""
+                  />
+                </a>
+                <div className="-mr-2 flex items-center md:hidden">
+                  <Popover.Button className="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white">
+                    <span className="sr-only">Open main menu</span>
+                    <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                  </Popover.Button>
+                </div>
+              </div>
+              <div className="hidden space-x-8 md:flex md:ml-10">
+                {navigation.map((item) => (
+                  <Link href={item.href} passHref={true}>
+                    <a
+                      key={item.name}
+                      href="#"
+                      className="text-base font-medium text-white hover:text-gray-300"
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="hidden md:flex md:items-center md:space-x-6">
+              <a
+                href="#"
+                className="text-base font-medium text-white hover:text-gray-300"
+              >
+                Log in
+              </a>
+            </div>
+          </nav>
+        </div>
+
+        <Transition
+          show={open}
+          as={Fragment}
+          enter="duration-150 ease-out"
+          enterFrom="opacity-0 scale-95"
+          enterTo="opacity-100 scale-100"
+          leave="duration-100 ease-in"
+          leaveFrom="opacity-100 scale-100"
+          leaveTo="opacity-0 scale-95"
+        >
+          <Popover.Panel
+            focus
+            static
+            className="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden"
+          >
+            <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div className="px-5 pt-4 flex items-center justify-between">
+                <div>
+                  <img
+                    className="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/workflow-mark-teal-500-cyan-600.svg"
+                    alt=""
+                  />
+                </div>
+                <div className="-mr-2">
+                  <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600">
+                    <span className="sr-only">Close menu</span>
+                    <XIcon className="h-6 w-6" aria-hidden="true" />
+                  </Popover.Button>
+                </div>
+              </div>
+              <div className="pt-5 pb-6">
+                <div className="px-2 space-y-1">
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+                <div className="mt-6 px-5">
+                  <a
+                    href="#"
+                    className="block text-center w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700"
+                  >
+                    Start free trial
+                  </a>
+                </div>
+                <div className="mt-6 px-5">
+                  <p className="text-center text-base font-medium text-gray-500">
+                    Existing customer?{" "}
+                    <a href="#" className="text-gray-900 hover:underline">
+                      Login
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Popover.Panel>
+        </Transition>
+      </>
+    )}
+  </Popover>
+);

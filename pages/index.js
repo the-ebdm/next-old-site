@@ -1,4 +1,6 @@
 import Head from "next/head";
+import RemoteText from "../components/Atom/remoteText";
+import CurriculumVitae from "../components/Organism/cv";
 
 const blogPosts = [
   {
@@ -60,11 +62,11 @@ const blogPosts = [
   },
 ];
 
-export default function Home() {
+export default function Home({ remoteConfig, user }) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>EBDM.DEV</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -85,15 +87,13 @@ export default function Home() {
                       <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-500" aria-hidden="true" />
                     </a> */}
                   <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                    <span className="block">Welcome to</span>
+                    <span className="block"><RemoteText store={"homepagepretext"} remoteConfig={remoteConfig}/></span>
                     <span className="pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-cyan-400 sm:pb-5">
-                      EBDM.DEV
+                      <RemoteText store="homepagetitle" remoteConfig={remoteConfig}/>
                     </span>
                   </h1>
                   <p className="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
-                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                    qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam
-                    occaecat fugiat.
+                    <RemoteText store="homepagesubtext" remoteConfig={remoteConfig}/>
                   </p>
                   <div className="mt-10 sm:mt-12">
                     <form action="#" className="sm:max-w-xl sm:mx-auto lg:mx-0">
@@ -126,7 +126,7 @@ export default function Home() {
                 <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                   {/* Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ */}
                   <img
-                    className="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                    className="hidden lg:block w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
                     src="https://tailwindui.com/img/component-images/cloud-illustration-teal-cyan.svg"
                     alt=""
                   />
@@ -152,12 +152,13 @@ export default function Home() {
                 condimentum id viverra nulla.
               </p>
             </div>
-            <div className="mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
-              <img
+            <div className="mt-12 -mb-10 sm:-mb-24 lg:-mb-40">
+              {/* <img
                 className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
-                src="https://tailwindui.com/img/component-images/green-project-app-screenshot.jpg"
+                src="/cv.png"
                 alt=""
-              />
+              /> */}
+              <CurriculumVitae size="sm" remoteConfig={remoteConfig}/>
             </div>
           </div>
         </div>
@@ -174,7 +175,7 @@ export default function Home() {
                 <div className="aspect-w-10 aspect-h-6 rounded-xl shadow-xl overflow-hidden sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
                   <img
                     className="object-cover lg:h-full lg:w-full"
-                    src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
+                    src="/woman.webp"
                     alt=""
                   />
                 </div>

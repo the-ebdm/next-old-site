@@ -10,12 +10,25 @@
   "dependencies": {
     "@headlessui/react": "^1.2.0",
     "@heroicons/react": "^1.0.1",
+    "@notionhq/client": "^0.1.8",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.2",
+    "axios": "^0.21.1",
     "firebase": "^8.6.2",
+    "highlight-code-blocks": "^1.0.0",
+    "highlight.js": "^10.7.2",
     "next": "latest",
+    "notion-client": "^4.6.2",
+    "prismjs": "^1.23.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.1"
+    "react-calendly": "^2.0.2",
+    "react-code-container": "^1.0.2",
+    "react-dom": "^17.0.1",
+    "react-firebase-hooks": "^3.0.4",
+    "react-notion": "^0.9.3",
+    "react-notion-x": "^4.6.2",
+    "react-tweet-embed": "^1.2.2",
+    "swr": "^0.5.6"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.4",
