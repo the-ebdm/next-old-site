@@ -1,5 +1,5 @@
 {
-  "name": "with-tailwindcss",
+  "name": "personal-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,18 +15,15 @@
     "@tailwindcss/forms": "^0.3.2",
     "axios": "^0.21.1",
     "firebase": "^8.6.2",
-    "highlight-code-blocks": "^1.0.0",
+    "firebase-admin": "^9.9.0",
     "highlight.js": "^10.7.2",
     "next": "latest",
     "notion-client": "^4.6.2",
-    "prismjs": "^1.23.0",
     "react": "^17.0.2",
     "react-calendly": "^2.0.2",
-    "react-code-container": "^1.0.2",
     "react-dom": "^17.0.1",
     "react-firebase-hooks": "^3.0.4",
     "react-notion": "^0.9.3",
-    "react-notion-x": "^4.6.2",
     "react-tweet-embed": "^1.2.2",
     "swr": "^0.5.6"
   },

@@ -8,6 +8,8 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
-exports.addBlogPosts = functions.pubsub.schedule('every 30 seconds').onRun(context => {
-	console.log(...context)
+exports.addBlogPosts = functions.pubsub.schedule('every 5 minutes').onRun(context => {
+  console.log("This is the function")
+	console.log(context)
+  console.log("End Transmission")
 })

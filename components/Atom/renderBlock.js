@@ -2,10 +2,14 @@ import hljs from "highlight.js";
 import TweetEmbed from "react-tweet-embed";
 import javascript from 'highlight.js/lib/languages/javascript';
 import 'highlight.js/styles/atom-one-dark.css';
+import Image from 'next/image';
 
 hljs.registerLanguage('javascript', javascript);
 
-export default function RenderNotionBlock({block}) {
+export default function RenderNotionBlock({block, style = true, className = ""}) {
+	if (block === undefined) {
+		return <></>
+	}
 	if (block.type === "text") {
 		return (
 			<p className="my-2">
@@ -27,6 +31,14 @@ export default function RenderNotionBlock({block}) {
 				})}
 			</p>
 		);
+	}
+	if (block.type === "image") {
+		console.log(block);
+		return (
+			<div className={style ? '' : null}>
+				<img src={block.properties.source[0][0]} className={style ? '' : className}/>
+			</div>
+		)
 	}
 	if (block.type === "code") {
 		const highlight = hljs.highlight(block.properties.title[0][0], {language: block.properties.language[0][0]});

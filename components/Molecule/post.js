@@ -1,12 +1,6 @@
 import { useState } from "react";
+import { recordMapParser } from "../../lib/notion";
 import RenderNotionBlock from "../Atom/renderBlock";
-
-const recordMapParser = (recordMap) => {
-  const blocks = Object.keys(recordMap.block)
-    .map((item) => recordMap.block[item])
-    .map((item) => item.value);
-  return blocks;
-};
 
 export default function Post({ post, recordMap }) {
   const [language, setLanguage] = useState("javascript");

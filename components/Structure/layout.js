@@ -89,7 +89,7 @@ const footerNavigation = {
 
 export default function Layout({ children }) {
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-gray-800">
       <div className="relative overflow-hidden">
         {Navbar}
 

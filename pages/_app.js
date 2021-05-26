@@ -1,19 +1,19 @@
 import 'tailwindcss/tailwind.css'
-import 'react-code-container/dist/index.css'
 import Layout from '../components/Structure/layout'
 import firebase from "../lib/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useAuthState } from "react-firebase-hooks";
 import { useEffect, useState } from "react";
+import useLocalStorage from "../lib/hooks/useLocalStorage";
 import Head from "next/head";
 
 const auth = firebase.auth();
-
 
 function MyApp({ Component, pageProps }) {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setUserData] = useState(null);
   const [remoteConfig, setRemoteConfig] = useState(null);
   const [analytics, setAnalytics] = useState(null);
+  const [theme, setTheme] = useLocalStorage("theme", "light");
   useEffect(async () => {
     if (process?.browser) {
       const remoteConfig = firebase.remoteConfig();
@@ -50,8 +50,19 @@ function MyApp({ Component, pageProps }) {
       console.log(userData);
     }
   }, [loading]);
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [theme])
   return (
-    <Layout remoteConfig={remoteConfig} user={user}>
+    <Layout remoteConfig={remoteConfig} user={user} theme={theme}>
+      <Head>
+        <title>EBDM.DEV</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Component {...pageProps} remoteConfig={remoteConfig} user={user}/>
     </Layout>
   )
