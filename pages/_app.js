@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css'
 import Layout from '../components/Structure/layout'
 import firebase from "../lib/firebase";
-import { useAuthState } from "react-firebase-hooks";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import useLocalStorage from "../lib/hooks/useLocalStorage";
 import Head from "next/head";

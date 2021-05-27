@@ -10,6 +10,10 @@ import {
 } from "@heroicons/react/solid";
 import Link from "next/link";
 import { InlineWidget } from "react-calendly";
+import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import firebase from "../../lib/firebase";
+
+const db = firebase.firestore();
 
 const team = [
   {
@@ -47,28 +51,33 @@ function classNames(...classes) {
 }
 
 export default function CurriculumVitae({ size = "lg", remoteConfig }) {
-	const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [projects, loading, error] = useCollectionDataOnce(
+    db.collection("Projects"),
+    {
+      idField: "id",
+    }
+  );
   useEffect(() => {
-    if(remoteConfig !== null) {
+    if (remoteConfig !== null) {
       setProfile(JSON.parse(remoteConfig.getValue("cvprofile")._value));
     }
-  }, [remoteConfig])
+  }, [remoteConfig]);
+  useEffect(() => {
+    console.log(projects);
+  }, [projects]);
   const [tabs, setTabs] = useState([
     { name: "Profile", href: "#", current: true },
     { name: "Calendar", href: "#", current: false },
   ]);
-	if(profile === null) {
-		return (
-			<div>
-				Loading...
-			</div>
-		)
-	}
+  if (profile === null) {
+    return <div>Loading...</div>;
+  }
   return (
     <div
       className={`${
         size === "lg" ? "" : "h-3/4 py-4 md:pt-0"
-      } flex overflow-hidden bg-white mb-8`}
+      } flex overflow-hidden mb-8`}
     >
       <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
         <div className="flex-1 relative z-0 flex overflow-hidden">
@@ -111,7 +120,7 @@ export default function CurriculumVitae({ size = "lg", remoteConfig }) {
                       <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                         <button
                           type="button"
-                          className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                          className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                         >
                           <MailIcon
                             className="-ml-1 mr-2 h-5 w-5 text-gray-400"
@@ -121,7 +130,7 @@ export default function CurriculumVitae({ size = "lg", remoteConfig }) {
                         </button>
                         <button
                           type="button"
-                          className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                          className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                         >
                           <PhoneIcon
                             className="-ml-1 mr-2 h-5 w-5 text-gray-400"
@@ -152,7 +161,7 @@ export default function CurriculumVitae({ size = "lg", remoteConfig }) {
                             href={tab.href}
                             className={classNames(
                               tab.current
-                                ? "border-pink-500 text-gray-900"
+                                ? "border-teal-500 text-gray-900"
                                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
                               "whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"
                             )}
@@ -213,38 +222,46 @@ export default function CurriculumVitae({ size = "lg", remoteConfig }) {
               {/* Team member list */}
               {size === "lg" && tabs[0].current === true ? (
                 <div className="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
-                  <h2 className="text-sm font-medium text-gray-500">
-                    Team members
+                  <h2 className="text-sm font-medium text-gray-500 mb-3">
+                    Projects
                   </h2>
                   <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {team.map((person) => (
-                      <div
-                        key={person.handle}
-                        className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500"
-                      >
-                        <div className="flex-shrink-0">
-                          <img
-                            className="h-10 w-10 rounded-full"
-                            src={person.imageUrl}
-                            alt=""
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <a href="#" className="focus:outline-none">
-                            <span
-                              className="absolute inset-0"
-                              aria-hidden="true"
-                            />
-                            <p className="text-sm font-medium text-gray-900">
-                              {person.name}
-                            </p>
-                            <p className="text-sm text-gray-500 truncate">
-                              {person.role}
-                            </p>
-                          </a>
-                        </div>
+                    {loading ? (
+                      <div>
+                        Loading...
                       </div>
-                    ))}
+                    ) : (
+                      <>
+                        {projects.map((project) => (
+                          <div
+                            key={project.id}
+                            className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-500"
+                          >
+                            <div className="flex-shrink-0">
+                              {/* <img
+                                className="h-10 w-10 rounded-full"
+                                src={person.imageUrl}
+                                alt=""
+                              /> */}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <a href="#" className="focus:outline-none">
+                                <span
+                                  className="absolute inset-0"
+                                  aria-hidden="true"
+                                />
+                                <p className="text-sm font-medium text-gray-900">
+                                  {project.Name}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  {project.Description}
+                                </p>
+                              </a>
+                            </div>
+                          </div>
+                        ))}
+                      </>
+                    )}
                   </div>
                 </div>
               ) : null}
@@ -258,12 +275,12 @@ export default function CurriculumVitae({ size = "lg", remoteConfig }) {
                         size === "lg" ? null : "hidden md:block"
                       }`}
                     >
-                      <dt className="text-sm font-medium text-gray-500">
+                      <dt className="text-sm font-medium text-gray-500 text-center mx-auto mb-10">
                         Book a meeting with me:
                       </dt>
-                      <dd className="mt-1 max-w-prose text-sm text-gray-900 space-y-5">
-												<InlineWidget url="https://calendly.com/ebdm" />
-											</dd>
+                      <dd className="mt-1 max-w-prose text-sm text-gray-900 space-y-5 mx-auto">
+                        <InlineWidget url="https://calendly.com/ebdm" />
+                      </dd>
                     </div>
                   </dl>
                 </div>

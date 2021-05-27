@@ -1,4 +1,12 @@
+import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
+import firebase from "../../lib/firebase";
+
+const db = firebase.firestore();
+
 export default function Footer({ footerNavigation }) {
+  const [quote, loading, error] = useDocumentDataOnce(
+    db.collection("Quotes").doc("benicetonerds.youmay")
+  );
   return (
     <footer className="bg-gray-50" aria-labelledby="footerHeading">
       <h2 id="footerHeading" className="sr-only">
@@ -14,8 +22,13 @@ export default function Footer({ footerNavigation }) {
             />
           </div>
           <p className="text-gray-500 text-base flex items-center justify-center">
-            Making the world a better place through constructing elegant
-            hierarchies.
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <blockquote>
+                "{quote.Quote}" - {quote.Attribution}
+              </blockquote>
+            )}
           </p>
           <div className="flex space-x-6 flex items-center justify-center">
             {footerNavigation.social.map((item) => (

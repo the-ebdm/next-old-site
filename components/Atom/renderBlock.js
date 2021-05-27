@@ -3,6 +3,7 @@ import TweetEmbed from "react-tweet-embed";
 import javascript from 'highlight.js/lib/languages/javascript';
 import 'highlight.js/styles/atom-one-dark.css';
 import Image from 'next/image';
+import { backgroundImage, backgroundPosition } from "tailwindcss/defaultTheme";
 
 hljs.registerLanguage('javascript', javascript);
 
@@ -35,8 +36,12 @@ export default function RenderNotionBlock({block, style = true, className = ""})
 	if (block.type === "image") {
 		console.log(block);
 		return (
-			<div className={style ? '' : null}>
-				<img src={block.properties.source[0][0]} className={style ? '' : className}/>
+			<div className={style ? 'max-h-full h-60' : null} style={{
+				backgroundRepeat: 'no-repeat',
+				backgroundImage: `url(${block.properties.source[0][0]})`,
+				backgroundPosition: 'center'
+			}}>
+				{/* <img src={block.properties.source[0][0]} className={style ? '' : className}/> */}
 			</div>
 		)
 	}
@@ -53,7 +58,6 @@ export default function RenderNotionBlock({block, style = true, className = ""})
 						}}
 						dangerouslySetInnerHTML={{__html: highlight.value}}
 					>
-						
 					</code>
 				</pre>
 			</div>
@@ -62,6 +66,13 @@ export default function RenderNotionBlock({block, style = true, className = ""})
 	if (block.type === "sub_header") {
 		return (
 			<h2 className="mt-3 my-5 block text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-xl">
+				{block?.properties?.title[0]}
+			</h2>
+		);
+	}
+	if (block.type === "sub_sub_header") {
+		return (
+			<h2 className="mt-3 my-5 block text-xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-xl">
 				{block?.properties?.title[0]}
 			</h2>
 		);

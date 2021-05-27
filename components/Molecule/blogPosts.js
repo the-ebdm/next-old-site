@@ -3,7 +3,7 @@ import RenderNotionBlock from "../../components/Atom/renderBlock";
 
 export default function BlogPosts({ posts, header = false }) {
   return (
-    <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
+    <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32 rounded-lg">
       <div className="relative">
         {header ? (
           <div className="text-center mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
@@ -75,11 +75,11 @@ export default function BlogPosts({ posts, header = false }) {
                           <p className="text-sm font-medium text-gray-900">
                             {post.properties.Author.created_by.name}
                           </p>
-                          <div className="flex space-x-1 text-sm text-gray-500">
+                          {/* <div className="flex space-x-1 text-sm text-gray-500">
                             <time dateTime={post.datetime}>{post.date}</time>
                             <span aria-hidden="true">&middot;</span>
-                            {/* <span>{post.readingLength} read</span> */}
-                          </div>
+                            <span>{post.readingLength} read</span>
+                          </div> */}
                         </div>
                       </div>
                     </div>

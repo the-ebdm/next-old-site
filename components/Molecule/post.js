@@ -129,17 +129,6 @@ export default function Post({ post, recordMap }) {
             {recordMapParser(recordMap).map((block) => (
               <RenderNotionBlock block={block} />
             ))}
-            {/* <NotionRenderer
-              recordMap={recordMap}
-              fullPage={true}
-              darkMode={false}
-              components={{
-                equation: Equation,
-                code: Code,
-                collection: Collection,
-                collectionRow: CollectionRow,
-              }}
-            /> */}
           </div>
         </div>
       </div>
