@@ -1,5 +1,17 @@
 const colors = require("tailwindcss/colors");
 
+const heightStep = 10,
+  heightIncrement = 2.5,
+  heightUnit = "rem",
+  heightEnd = 21;
+const generateHeights = () => {
+  const heights = {};
+  for (i = 1; i < heightEnd; i++) {
+    heights[i*10] = `${i*heightIncrement}${heightUnit}`
+  }
+  return heights;
+};
+
 module.exports = {
   purge: [],
   presets: [],
@@ -440,14 +452,7 @@ module.exports = {
       "3/6": "50%",
       "4/6": "66.666667%",
       "5/6": "83.333333%",
-      10: "2.5rem",
-      20: "5rem",
-      30: "7.5rem",
-      40: "10rem",
-      50: "12.5rem",
-      60: "15rem",
-      70: "17.5rem",
-      80: "20rem",
+      ...generateHeights(),
       full: "100%",
       screen: "100vh",
     }),

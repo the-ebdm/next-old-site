@@ -7,6 +7,7 @@ import useLocalStorage from "../lib/hooks/useLocalStorage";
 import Head from "next/head";
 
 const auth = firebase.auth();
+const isBrowser = (typeof window !== "undefined");
 
 function MyApp({ Component, pageProps }) {
   const [user, loading, error] = useAuthState(auth);
@@ -23,7 +24,9 @@ function MyApp({ Component, pageProps }) {
       remoteConfig.defaultConfig = {
         homepagetitle: "EBDM",
       };
-      window.dataLayer = window.dataLayer || [];
+      if(isBrowser) {
+        window.dataLayer = window.dataLayer || [];
+      }
       function gtag() {
         dataLayer.push(arguments);
       }
