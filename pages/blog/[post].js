@@ -1,5 +1,4 @@
 import Post from "../../components/Molecule/post";
-import useSWR from "swr";
 import axios from "axios";
 import { NotionAPI } from "notion-client";
 import { useRouter } from "next/router";

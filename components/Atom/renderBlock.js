@@ -12,13 +12,15 @@ export default function RenderNotionBlock({
   block,
   style = true,
   className = "",
+  imgCaption = true,
+  truncate = false
 }) {
   if (block === undefined) {
     return <></>;
   }
   if (block.type === "text") {
     return (
-      <p className="my-2">
+      <p className={`my-2 ${truncate ? 'truncate' : null}`}>
         {block?.properties?.title.map((item) => {
           if (item.length > 1) {
             const style = item[1][0][0];
@@ -55,26 +57,32 @@ export default function RenderNotionBlock({
 			width: null,
 			hasLoaded: false
 		});
-    console.log(block);
     return (
       <div
-        className={style ? "max-h-screen h-80" : null}
-        style={{
-          backgroundRepeat: "no-repeat",
-          backgroundImage: `url(${block.properties.source[0][0]})`,
-          backgroundPosition: "center",
-        }}
+        className={style ? "py-4" : null}
       >
-        <img
-					onLoad={() => {
-						setImage({
-							...image,
-							hasLoaded: true
-						})
-					}}
-          src={block.properties.source[0][0]}
-          className={style ? "hidden" : className}
-        />
+        <div style={typeof block?.format?.block_width === "number" ? {
+          width: `${block?.format?.block_width + 20}px`
+        } : {}} className="mx-auto">
+          <img
+            onLoad={() => {
+              setImage({
+                ...image,
+                hasLoaded: true
+              })
+            }}
+            width={block?.format?.block_width}
+            src={block.properties.source[0][0].includes('aws') ? `https://notion.so/image/${encodeURIComponent(block.properties.source[0][0])}?table=block&id=${block.id}&userId=&cache=v2`: block.properties.source[0][0]}
+            className={style ? "mx-auto rounded-xl" : className}
+          />
+          {
+            block.properties.hasOwnProperty('caption') && imgCaption ? (
+              <div className="pl-8 pt-2">
+                {block.properties.caption[0][0]}
+              </div>
+            ) : null
+          }
+        </div>
       </div>
     );
   }
@@ -83,7 +91,7 @@ export default function RenderNotionBlock({
       language: block.properties.language[0][0],
     });
     return (
-      <div className="bg-gray-700 text-white p-4 rounded-xl my-4">
+      <div className="my-6 rounded-xl overflow-hidden bg-gray-800">
         <pre>
           <code
             style={{

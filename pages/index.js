@@ -163,10 +163,10 @@ export default function Home({ remoteConfig, user, posts, quotes }) {
                 /> */}
                 <Link href="/cv" passHref>
                   <a className="">
-                    <div className="bg-transparent border-4 border-solid border-transparent hover:border-teal-600" style={{
+                    <div className="rounded-xl bg-transparent border-2 border-solid border-transparent hover:border-teal-600" style={{
                       zIndex: '1000 !important;'
                     }}>
-                      <CurriculumVitae size="sm" remoteConfig={remoteConfig} />
+                      <CurriculumVitae size="sm" remoteConfig={remoteConfig} imgClass="rounded-t-lg"/>
                     </div>
                   </a>
                 </Link>

@@ -121,9 +121,11 @@ export default function Post({ post, recordMap }) {
                 {post.properties.Name.title[0].plain_text}
               </span>
             </h1>
-            <p className="mt-8 text-xl text-gray-500 leading-8 text-center">
-              {post.properties.Description.rich_text[0].plain_text}
-            </p>
+            { post.properties.hasOwnProperty('Description') ? (
+              <p className="mt-8 text-xl text-gray-500 leading-8 text-center">
+                {post.properties.Description.rich_text[0].plain_text}
+              </p>
+            ) : null}
           </div>
           <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
             {recordMapParser(recordMap).map((block) => (

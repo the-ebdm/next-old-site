@@ -1,17 +1,14 @@
-import { Fragment, useEffect, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { MenuIcon } from "@heroicons/react/outline";
+import { useEffect, useState } from "react";
 import {
-  ChevronLeftIcon,
-  FilterIcon,
   MailIcon,
   PhoneIcon,
-  SearchIcon,
 } from "@heroicons/react/solid";
 import Link from "next/link";
 import { InlineWidget } from "react-calendly";
 import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import firebase from "../../lib/firebase";
+import useSWR from "swr";
+import axios from 'axios';
 
 const db = firebase.firestore();
 
@@ -50,8 +47,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function CurriculumVitae({ size = "lg", remoteConfig }) {
+const fetcher = url => axios.get(url).then(res => res.data);
+
+
+export default function CurriculumVitae({ size = "lg", remoteConfig, imgClass = "" }) {
   const [profile, setProfile] = useState(null);
+  const { data: linkedin, linkedinError } = useSWR('/api/linkedin', fetcher);
   const [projects, loading, error] = useCollectionDataOnce(
     db.collection("Projects"),
     {
@@ -64,8 +65,8 @@ export default function CurriculumVitae({ size = "lg", remoteConfig }) {
     }
   }, [remoteConfig]);
   useEffect(() => {
-    console.log(projects);
-  }, [projects]);
+    console.log(linkedin);
+  }, [linkedin]);
   const [tabs, setTabs] = useState([
     { name: "Profile", href: "#", current: true },
     { name: "Calendar", href: "#", current: false },
@@ -91,7 +92,7 @@ export default function CurriculumVitae({ size = "lg", remoteConfig }) {
                       size === "lg"
                         ? "h-32 lg:h-48"
                         : "hidden md:block lg:h-32 h-16 mx-auto"
-                    } w-full object-cover `}
+                    } w-full object-cover ${imgClass}`}
                     src={profile.coverImageUrl}
                     alt=""
                   />
