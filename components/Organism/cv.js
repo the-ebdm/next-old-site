@@ -1,74 +1,45 @@
 import { useEffect, useState } from "react";
-import {
-  MailIcon,
-  PhoneIcon,
-} from "@heroicons/react/solid";
+import { MailIcon, PhoneIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import { InlineWidget } from "react-calendly";
-import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import { useCollectionDataOnce, useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import firebase from "../../lib/firebase";
 import useSWR from "swr";
-import axios from 'axios';
+import axios from "axios";
 
 const db = firebase.firestore();
-
-const team = [
-  {
-    name: "Leslie Alexander",
-    handle: "lesliealexander",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "Michael Foster",
-    handle: "michaelfoster",
-    role: "Co-Founder / CTO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "Dries Vincent",
-    handle: "driesvincent",
-    role: "Manager, Business Relations",
-    imageUrl:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "Lindsay Walton",
-    handle: "lindsaywalton",
-    role: "Front-end Developer",
-    imageUrl:
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const fetcher = url => axios.get(url).then(res => res.data);
+const idify = (string) =>
+  string.split(" ").join("").toLowerCase().replace(/\W/g, "");
 
-
-export default function CurriculumVitae({ size = "lg", remoteConfig, imgClass = "" }) {
+export default function CurriculumVitae({
+  size = "lg",
+  remoteConfig,
+  imgClass = "",
+}) {
   const [profile, setProfile] = useState(null);
-  const { data: linkedin, linkedinError } = useSWR('/api/linkedin', fetcher);
   const [projects, loading, error] = useCollectionDataOnce(
     db.collection("Projects"),
     {
       idField: "id",
     }
   );
+  const [contact, loadingContact, contactError] = useDocumentDataOnce(db.collection("Contacts").doc('eric'));
   useEffect(() => {
     if (remoteConfig !== null) {
       setProfile(JSON.parse(remoteConfig.getValue("cvprofile")._value));
     }
   }, [remoteConfig]);
   useEffect(() => {
-    console.log(linkedin);
-  }, [linkedin]);
+    console.log(contact);
+  }, [contact]);
   const [tabs, setTabs] = useState([
     { name: "Profile", href: "#", current: true },
+    { name: "Experience", href: "#", current: false },
     { name: "Calendar", href: "#", current: false },
   ]);
   if (profile === null) {
@@ -194,12 +165,26 @@ export default function CurriculumVitae({ size = "lg", remoteConfig, imgClass = 
                 <div className="mt-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     {Object.keys(profile.fields).map((field) => (
-                      <div key={field} className="sm:col-span-1">
+                      <div
+                        key={field}
+                        className={
+                          typeof profile.fields[field] === "object"
+                            ? "sm:col-span-2"
+                            : "sm:col-span-1"
+                        }
+                      >
                         <dt className="text-sm font-medium text-gray-500">
                           {field}
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
-                          {profile.fields[field]}
+                          {typeof profile.fields[field] === "object" ? (
+                            <img
+                              src={profile.fields[field].src}
+                              className="pt-2"
+                            />
+                          ) : (
+                            profile.fields[field]
+                          )}
                         </dd>
                       </div>
                     ))}
@@ -220,7 +205,7 @@ export default function CurriculumVitae({ size = "lg", remoteConfig, imgClass = 
                 </div>
               ) : null}
 
-              {/* Team member list */}
+              {/* Projects list */}
               {size === "lg" && tabs[0].current === true ? (
                 <div className="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
                   <h2 className="text-sm font-medium text-gray-500 mb-3">
@@ -228,9 +213,7 @@ export default function CurriculumVitae({ size = "lg", remoteConfig, imgClass = 
                   </h2>
                   <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {loading ? (
-                      <div>
-                        Loading...
-                      </div>
+                      <div>Loading...</div>
                     ) : (
                       <>
                         {projects.map((project) => (
@@ -267,8 +250,28 @@ export default function CurriculumVitae({ size = "lg", remoteConfig, imgClass = 
                 </div>
               ) : null}
 
-              {/* Meeting Invite */}
               {tabs[1].current === true ? (
+                <div className="mt-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                    {contact.Social.LinkedinProfile.experiences.map((exp) => {
+                      exp.id = idify(`${exp.title} ${exp.company}`);
+                      return (
+                        <div key={exp.id} className={"sm:col-span-2"}>
+                          <dt className="text-sm font-medium text-gray-500">
+                            {exp.title} - {exp.company}
+                          </dt>
+                          <dd className="mt-1 text-sm text-gray-900">
+                            {exp.description}
+                          </dd>
+                        </div>
+                      );
+                    })}
+                  </dl>
+                </div>
+              ) : null}
+
+              {/* Meeting Invite */}
+              {tabs[2].current === true ? (
                 <div className="mt-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                     <div
