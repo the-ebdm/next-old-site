@@ -20,7 +20,7 @@ export async function getServerSideProps() {
   });
   console.log(results[0])
   const posts = await Promise.all(
-    results.map((item) => {
+    results.filter(item => item.properties.Published.checkbox === true).map((item) => {
       return client.getPage(item.id).then((blocks) => {
         return {
           ...item,

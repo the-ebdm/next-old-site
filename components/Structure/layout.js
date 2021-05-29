@@ -129,7 +129,7 @@ const Navbar = (
               </div>
               <div className="hidden space-x-8 md:flex md:ml-10">
                 {navigation.map((item) => (
-                  <Link href={item.href} passHref={true}>
+                  <Link href={item.href} passHref={true} key={item.name}>
                     <a
                       key={item.name}
                       href="#"

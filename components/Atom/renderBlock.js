@@ -13,14 +13,15 @@ export default function RenderNotionBlock({
   style = true,
   className = "",
   imgCaption = true,
-  truncate = false
+  truncate = false,
+  key = null
 }) {
   if (block === undefined) {
     return <></>;
   }
   if (block.type === "text") {
     return (
-      <p className={`my-2 ${truncate ? 'truncate' : null}`}>
+      <p key={key} className={`my-2 ${truncate ? 'truncate' : null}`}>
         {block?.properties?.title.map((item) => {
           if (item.length > 1) {
             const style = item[1][0][0];
@@ -43,6 +44,7 @@ export default function RenderNotionBlock({
   if (block.type === "sub_header" || block.type === "sub_sub_header") {
     return (
       <h2
+        key={key}
         className={`mt-3 my-5 mx-10 block ${
           block.type === "sub_header" ? "text-2xl" : "text-xl"
         } leading-8 font-extrabold tracking-tight text-gray-900 sm:text-xl`}
@@ -59,6 +61,7 @@ export default function RenderNotionBlock({
 		});
     return (
       <div
+        key={key}
         className={style ? "py-4" : null}
       >
         <div style={typeof block?.format?.block_width === "number" ? {
@@ -91,8 +94,8 @@ export default function RenderNotionBlock({
       language: block.properties.language[0][0],
     });
     return (
-      <div className="my-6 rounded-xl overflow-hidden bg-gray-800">
-        <pre>
+      <div key={key} className="my-6 rounded-xl overflow-hidden bg-gray-800 p-4">
+        <pre className="m-4">
           <code
             style={{
               fontFamily: "monospace",
@@ -107,7 +110,7 @@ export default function RenderNotionBlock({
   }
   if (block.type === "to_do") {
     return (
-      <div className="my-4">
+      <div key={key} className="my-4">
         <div className="flex items-start">
           <div className="h-5 flex items-center">
             <input
@@ -137,6 +140,7 @@ export default function RenderNotionBlock({
   if (block.type === "quote") {
     return (
       <blockquote
+        key={key}
         className="pl-5 py-4 my-4"
         style={{
           borderLeftColor: "#e5e7eb",
@@ -152,7 +156,7 @@ export default function RenderNotionBlock({
     const tweet = block?.properties?.source[0][0];
     const tweetSegments = tweet.split("/");
     return (
-      <div className="w-1/2 mx-auto">
+      <div key={key} className="w-1/2 mx-auto">
         <TweetEmbed id={tweetSegments[tweetSegments.length - 1]} />
       </div>
     );
@@ -161,7 +165,7 @@ export default function RenderNotionBlock({
     return <></>;
   }
   return (
-    <p>
+    <p key={key}>
       {block.type} - {block.id}
     </p>
   );

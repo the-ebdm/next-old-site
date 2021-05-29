@@ -129,7 +129,7 @@ export default function Post({ post, recordMap }) {
           </div>
           <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
             {recordMapParser(recordMap).map((block) => (
-              <RenderNotionBlock block={block} />
+              <RenderNotionBlock block={block} key={block.id}/>
             ))}
           </div>
         </div>

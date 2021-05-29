@@ -25,7 +25,7 @@ export async function getServerSideProps() {
     database_id: database.blog,
   });
   const posts = await Promise.all(
-    results.map((item) => {
+    results.filter(item => item.properties.Published.checkbox === true).map((item) => {
       return client.getPage(item.id).then((blocks) => {
         return {
           ...item,
