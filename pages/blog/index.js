@@ -18,6 +18,7 @@ export async function getServerSideProps() {
   const { results } = await notion.databases.query({
     database_id: database.blog,
   });
+  console.log(results[0])
   const posts = await Promise.all(
     results.map((item) => {
       return client.getPage(item.id).then((blocks) => {
