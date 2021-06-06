@@ -5,7 +5,7 @@ const db = firebase.firestore();
 
 export default function Footer({ footerNavigation }) {
   const [quote, loading, error] = useDocumentDataOnce(
-    db.collection("Quotes").doc("benicetonerds.youmay")
+    db.collection("Quotes").doc("benicetonerdsyoumay")
   );
   return (
     <footer className="bg-gray-50" aria-labelledby="footerHeading">
