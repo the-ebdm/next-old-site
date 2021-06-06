@@ -649,10 +649,31 @@
   },
   {
     "text": "I disagree with what you say but I will fight to the death for your right to say it",
-    "attribution": "Voltaire"
+    "attribution": "Voltaire",
+    "tags": ["Free Speech", "Witty", "Dying on a Hill"]
   },
   {
     "text": "The price good men pay for indifference to public affairs is to be ruled by evil men.",
-    "attribution": "Plato"
+    "attribution": "Plato",
+    "tags": ["Good Men", "Indifference", "Evil Men", "Politics", "Public Affairs", "Ruling", "Hierachy"]
+  },
+  {
+    "text": "The best way to pursue happiness is to help other people. Nothing else will make you happier",
+    "attribution": "George Lucas",
+    "tags": ["Happiness", "Helping People", "People"]
+  },
+  {
+    "text": "Though one may conquor a thousand times a thousand men in battle, yet he indeed is the noblest victor who conquers himself",
+    "attribution": "",
+    "tags": ["Battle", "Self-Conquest", "Noble", "Noble Actions", "Victory"]
+  },
+  {
+    "text": "The ultimate, hidden truth of the world is that it is something we make, and could just as easily make it differently",
+    "attribution": "David Graeber",
+    "tags": ["Truth", "World", "Making", "Arbitrary"]
+  },
+  {
+    "text": "To think good thoughts requires effort. This one of the things that discipline – training – is about",
+    "attribution": "James Clavell"
   }
 ]
