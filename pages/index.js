@@ -99,31 +99,7 @@ export default function Home({ remoteConfig, user, posts, quotes }) {
                       remoteConfig={remoteConfig}
                     />
                   </p>
-                  <div className="mt-10 sm:mt-12">
-                    <form action="#" className="sm:max-w-xl sm:mx-auto lg:mx-0">
-                      <div className="sm:flex">
-                        <div className="min-w-0 flex-1">
-                          <label htmlFor="email" className="sr-only">
-                            Email address
-                          </label>
-                          <input
-                            id="email"
-                            type="email"
-                            placeholder="Enter your email"
-                            className="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                          />
-                        </div>
-                        <div className="mt-3 sm:mt-0 sm:ml-3">
-                          <button
-                            type="submit"
-                            className="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                          >
-                            Join Mail List
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+                  <MailingList />
                 </div>
               </div>
               <div className="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
@@ -156,11 +132,6 @@ export default function Home({ remoteConfig, user, posts, quotes }) {
                 </p>
               </div>
               <div className="mt-12 -mb-10 sm:-mb-24 lg:-mb-40">
-                {/* <img
-                  className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
-                  src="/cv.png"
-                  alt=""
-                /> */}
                 <Link href="/cv" passHref>
                   <a className="">
                     <div className="rounded-xl bg-transparent border-2 border-solid border-transparent hover:border-teal-600" style={{
@@ -228,3 +199,31 @@ export default function Home({ remoteConfig, user, posts, quotes }) {
     </>
   );
 }
+
+function MailingList() {
+  return <div className="mt-10 sm:mt-12">
+    <form action="#" className="sm:max-w-xl sm:mx-auto lg:mx-0">
+      <div className="sm:flex">
+        <div className="min-w-0 flex-1">
+          <label htmlFor="email" className="sr-only">
+            Email address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900" />
+        </div>
+        <div className="mt-3 sm:mt-0 sm:ml-3">
+          <button
+            type="submit"
+            className="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+          >
+            Join Mail List
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>;
+}
+
