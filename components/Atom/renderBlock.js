@@ -90,9 +90,19 @@ export default function RenderNotionBlock({
     );
   }
   if (block.type === "code") {
+    const lang = block.properties.language[0][0];
+    if(lang === "Plain Text") {
+      return <div key={key} className="my-6">
+      <pre style={{
+        whiteSpace: "pre-wrap"
+      }}>
+        {block.properties.title[0][0]}
+      </pre>
+    </div>
+    }
     const highlight = hljs.highlight(block.properties.title[0][0], {
-      language: block.properties.language[0][0],
-    });
+      language: lang,
+    }, true);
     return (
       <div key={key} className="my-6 rounded-xl overflow-hidden bg-gray-800 p-4">
         <pre className="m-4">
@@ -101,6 +111,7 @@ export default function RenderNotionBlock({
               fontFamily: "monospace",
               letterSpacing: "-0.05em",
               wordBreak: "normal",
+              whiteSpace: "pre-wrap"
             }}
             dangerouslySetInnerHTML={{ __html: highlight.value }}
           ></code>
