@@ -664,8 +664,8 @@
   },
   {
     "text": "Though one may conquor a thousand times a thousand men in battle, yet he indeed is the noblest victor who conquers himself",
-    "attribution": "",
-    "tags": ["Battle", "Self-Conquest", "Noble", "Noble Actions", "Victory"]
+    "attribution": "Buddha",
+    "tags": ["Battle", "Self-Conquest", "Noble", "Noble Action", "Victory"]
   },
   {
     "text": "The ultimate, hidden truth of the world is that it is something we make, and could just as easily make it differently",
@@ -675,5 +675,20 @@
   {
     "text": "To think good thoughts requires effort. This one of the things that discipline – training – is about",
     "attribution": "James Clavell"
+  },
+  {
+    "text": "Some people, when confronted with a problem, think \"I know, I'll use regular expressions.\" Now they have two problems.",
+    "attribution": "Jamie Zawinski",
+    "tags": ["RegEx", "Witty", "Funny", "Programming", "Problems"]
+  },
+  {
+    "text": "Good friends make us better people. They cheer us on when we hit bottom and keep us humble when we reach the top.",
+    "attribution": "Simon Sinek",
+    "tags": ["Friends", "Good Friends", "Better", "Betterment", "Cheer", "Humility"]
+  },
+  {
+    "text": "Belief is what you stake your actions on",
+    "attribution": "Jordan Peterson",
+    "tags": ["Belief", "Action", "Noble Action"]
   }
 ]

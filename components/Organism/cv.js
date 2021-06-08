@@ -250,6 +250,7 @@ export default function CurriculumVitae({
                 </div>
               ) : null}
 
+              {/* Experiance */}
               {tabs[1].current === true ? (
                 <div className="mt-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">

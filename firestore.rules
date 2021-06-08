@@ -1,5 +1,11 @@
 rules_version = '2';
 service cloud.firestore {
+  match /databases/MailingList/documents {
+    match /{document=**} {
+      allow write: if true;
+      allow read: if false;
+    }
+  }
   match /databases/{database}/documents {
     match /{document=**} {
       allow read: if true;
