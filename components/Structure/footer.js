@@ -5,7 +5,7 @@ const db = firebase.firestore();
 
 export default function Footer({ footerNavigation }) {
   const [quote, loading, error] = useDocumentDataOnce(
-    db.collection("Quotes").doc("benicetonerdsyoumay")
+    db.collection("Quotes").doc("strangetimesarethese")
   );
   return (
     <footer className="bg-gray-50" aria-labelledby="footerHeading">
@@ -30,7 +30,7 @@ export default function Footer({ footerNavigation }) {
               </blockquote>
             )}
           </p>
-          <div className="flex space-x-6 flex items-center justify-center">
+          <div className="flex space-x-6 items-center justify-center">
             {footerNavigation.social.map((item) => (
               <a
                 key={item.name}
