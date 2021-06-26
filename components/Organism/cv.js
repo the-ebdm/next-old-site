@@ -4,6 +4,7 @@ import Link from "next/link";
 import { InlineWidget } from "react-calendly";
 import { useCollectionDataOnce, useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import firebase from "../../lib/firebase";
+import { GithubContributions } from "react-github-graph"
 import useSWR from "swr";
 import axios from "axios";
 
@@ -178,10 +179,7 @@ export default function CurriculumVitae({
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900">
                           {typeof profile.fields[field] === "object" ? (
-                            <img
-                              src={profile.fields[field].src}
-                              className="pt-2"
-                            />
+                            <GithubContributions username={profile.fields[field].username} />
                           ) : (
                             profile.fields[field]
                           )}
