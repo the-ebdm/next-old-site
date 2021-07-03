@@ -597,7 +597,7 @@
   },
   {
     "text": "What is better? To be born good, or to overcome your evil nature through great effort?",
-    "attribution": "Paarthurnax"
+    "attribution": "Paarthurnax (Elder Scrolls)"
   },
   {
     "text": "Stand amongst the ashes of a trillion dead souls, and ask the ghosts if honor matters. The silence is your answer.",
@@ -710,5 +710,13 @@
     "text": "Every great man is an actor of his own ideal",
     "attribution": "Jordan Peterson (attributed to Friedrich Nietzsche)",
     "tags": ["Good Men", "Action", "Ideal", "Greatness"]
+  },
+  {
+    "text": "I saw the possibility of practicing the values my mother had taught me; how you could build power not by putting people down but by lifting them up. This was true democracy at work - democracy not as a gift from on high, or a division of spoils between interest groups, but rather democracy that was earned, the work of everybody.",
+    "attribution": "Barack Obama",
+    "tags": ["Democracy", "Values"]
+  },
+  {
+
   }
 ]

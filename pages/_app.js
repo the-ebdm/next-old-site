@@ -10,7 +10,8 @@ const auth = firebase.auth();
 const isBrowser = (typeof window !== "undefined");
 
 function MyApp({ Component, pageProps }) {
-  const [user, loading, error] = useAuthState(auth);
+  const [loading, setLoading] = useState(false);
+  const [user, userLoading, error] = useAuthState(auth);
   const [userData, setUserData] = useState(null);
   const [remoteConfig, setRemoteConfig] = useState(null);
   const [analytics, setAnalytics] = useState(null);
@@ -50,9 +51,8 @@ function MyApp({ Component, pageProps }) {
         metadata: metadata,
         isAdmin: !!roles?.claims?.admin,
       });
-      console.log(userData);
     }
-  }, [loading]);
+  }, [userLoading]);
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark')
@@ -60,13 +60,16 @@ function MyApp({ Component, pageProps }) {
       document.documentElement.classList.remove('dark')
     }
   }, [theme])
+  useEffect(() => {
+    console.log(`Everything ${loading ? 'is Loading' : 'has Loaded'}`)
+  }, [loading])
   return (
-    <Layout remoteConfig={remoteConfig} user={user} theme={theme}>
+    <Layout remoteConfig={remoteConfig} user={user} theme={theme} loading={loading}>
       <Head>
         <title>EBDM.DEV</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} remoteConfig={remoteConfig} user={user}/>
+      <Component {...pageProps} remoteConfig={remoteConfig} user={user} setLoading={setLoading}/>
     </Layout>
   )
 }

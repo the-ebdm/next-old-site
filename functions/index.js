@@ -166,3 +166,14 @@ exports.addScoreToDiscordUser = functions.firestore
     }
   }, { merge: true })
 });
+
+exports.addSourceToStorage = functions.firestore.document("Projects/{projId}").onWrite(async (change, context) => {
+  const before = change.before.data();
+  const newValue = change.after.data();
+  if(before.Source.Provider !== newValue.Source.Provider || before.Source.Url !== newValue.Source.Url) {
+    const { Provider, Url } = newValue.Source;
+    if( Provider === "GitHub" ) {
+      
+    }
+  }
+})

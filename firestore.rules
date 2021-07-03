@@ -6,7 +6,7 @@ service cloud.firestore {
       allow read: if false;
     }
   }
-  match /databases/{database}/documents {
+  match /databases/Quotes/documents {
     match /{document=**} {
       allow read: if true;
       allow write: if false;
