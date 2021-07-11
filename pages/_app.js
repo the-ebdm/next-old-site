@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
   const [userData, setUserData] = useState(null);
   const [remoteConfig, setRemoteConfig] = useState(null);
   const [analytics, setAnalytics] = useState(null);
-  const [theme, setTheme] = useLocalStorage("theme", "light");
+  const [theme, setTheme] = useLocalStorage("theme", {name: "light"});
   useEffect(async () => {
     if (process?.browser) {
       const remoteConfig = firebase.remoteConfig();

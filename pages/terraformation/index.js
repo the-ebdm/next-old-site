@@ -6,25 +6,32 @@ import Header from "../../components/Atom/header";
 
 const db = firebase.firestore();
 
-const addProject = [
-  {
-    name: "Name",
-    type: "text",
-  },
-  {
-    name: "Description",
-    type: "textarea",
-  },
-  {
-    name: "Source Provider",
-    type: "select",
-    options: ["GitHub", "Bitbucket"],
-  },
-  {
-    name: "Source Url",
-    type: "text",
-  },
-];
+const addProject = {
+  fields: [
+    {
+      name: "Name",
+      type: "text",
+    },
+    {
+      name: "Description",
+      type: "textarea",
+    },
+    {
+      name: "Source Provider",
+      type: "select",
+      options: ["GitHub", "Bitbucket"],
+      button: {
+        has: true,
+        name: "Create",
+        onClick: () => {},
+      }
+    },
+    {
+      name: "Source Url",
+      type: "text",
+    },
+  ],
+};
 
 export default function Terraformation({}) {
   const [projects] = useCollectionData(db.collection("Projects"), {
@@ -34,7 +41,7 @@ export default function Terraformation({}) {
     <>
       <div className="mt-12 mx-auto max-w-7xl px-4 sm:mt-24">
         <Header title="Terraformation" />
-        <Form title="Add a Project" schema={addProject} type="save" />
+        <Form title="Add a Project" schema={addProject} collumns={2} type="save" />
         <Table data={projects || []} />
       </div>
     </>
@@ -60,10 +67,10 @@ function Table({ data }) {
                             {item?.Type}
                           </p>
                         ))}
-                        { Source ? (
-                        <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          {Source?.Provider}
-                        </p>
+                        {Source ? (
+                          <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            {Source?.Provider}
+                          </p>
                         ) : null}
                       </div>
                     </div>

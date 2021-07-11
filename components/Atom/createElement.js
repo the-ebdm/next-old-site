@@ -14,7 +14,7 @@ export default function CreateElement({ item }) {
         />
       );
     case "select":
-      return <Select options={item.options} />;
+      return <Select options={item.options} button={item.button} />;
     default:
       return (
         <input

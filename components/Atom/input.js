@@ -10,6 +10,7 @@ export default function Input({
   setValue,
   appendClassDiv,
   showLabel = true,
+  hasButton = false
 }) {
   const id = name.toLowerCase().split(" ").join("-");
   return (
@@ -25,7 +26,7 @@ export default function Input({
         <></>
       )}
       {type !== "textarea" ? (
-        <div className="mt-1">
+        <div className={`mt-1 ${hasButton ? 'flex rounded-md shadow-sm' : null}`}>
           <input
             type={type}
             name={id}
@@ -39,6 +40,13 @@ export default function Input({
               }
             }}
           />
+          {
+            hasButton ? (
+              <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                Go
+              </span>
+            ) : null
+          }
         </div>
       ) : (
         <div className="mt-1">

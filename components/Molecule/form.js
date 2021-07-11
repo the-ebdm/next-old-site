@@ -1,6 +1,6 @@
 import CreateElement from "../Atom/createElement";
 
-export default function Form({ title, schema, type, collection, onSubmit }) {
+export default function Form({ title, schema, type, collection, onSubmit, collumns = 1 }) {
   if (type === "save") {
     onSubmit = (event) => {
       event.preventDefault();
@@ -14,9 +14,9 @@ export default function Form({ title, schema, type, collection, onSubmit }) {
         onSubmit={(event) => {
           onSubmit(event);
         }}
-        className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+        className={`mt-6 grid sm:grid-cols-${collumns} grid-cols-${collumns} gap-y-6 sm:gap-x-8`}
       >
-        {schema.map((item) => {
+        {schema.fields.map((item) => {
           return (
             <div className="mr-2 ml-2">
               <label
@@ -26,7 +26,7 @@ export default function Form({ title, schema, type, collection, onSubmit }) {
                 {item.name}
               </label>
               <div className="mt-1">
-                <CreateElement item={item} />
+                <CreateElement item={item}/>
               </div>
             </div>
           );
