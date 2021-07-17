@@ -44,9 +44,9 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Home({ remoteConfig, user, posts, quotes, login }) {
+export default function Home({ remoteConfig, user, posts, quotes, login, theme }) {
   const [quote] = useDocumentDataOnce(
-    db.collection("Quotes").doc("yesiamadreamerfora")
+    db.collection("Quotes").doc("thoughonemayconquora")
   );
   const [cvintro, setCVIntro] = useState(null);
   useEffect(() => {
@@ -55,8 +55,8 @@ export default function Home({ remoteConfig, user, posts, quotes, login }) {
     }
   }, [remoteConfig]);
   useEffect(() => {
-    console.log(quote);
-  }, [quote]);
+    console.log(theme)
+  }, [theme])
   return (
     <>
       <Head>
@@ -75,10 +75,12 @@ export default function Home({ remoteConfig, user, posts, quotes, login }) {
                       <RemoteText
                         store={"homepagepretext"}
                         remoteConfig={remoteConfig}
+                        style={{fontFamily: theme?.fonts?.header}}
                       />
                     </span>
                     <span className="pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-cyan-400 sm:pb-5">
                       <RemoteText
+                        style={{fontFamily: theme?.fonts?.header}}
                         store="homepagetitle"
                         remoteConfig={remoteConfig}
                       />
@@ -117,7 +119,7 @@ export default function Home({ remoteConfig, user, posts, quotes, login }) {
                 <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">
                   {cvintro.Intro}
                 </h2>
-                <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
+                <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl" style={{fontFamily: theme?.fonts?.header}}>
                   {cvintro.Title}
                 </p>
                 <p className="mt-5 max-w-prose mx-auto text-xl text-gray-500">
@@ -175,7 +177,7 @@ export default function Home({ remoteConfig, user, posts, quotes, login }) {
                       </p>
                     </div>
                     <footer className="mt-6">
-                      <p className="text-base font-medium text-white">
+                      <p className="text-base font-medium text-white" style={{fontFamily: theme?.fonts?.header}}>
                         {quote.Attribution}
                       </p>
                     </footer>
