@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function RemoteText({remoteConfig, store, className}) {
+export default function RemoteText({remoteConfig, store, className, style = {}}) {
 	const [value, setValue] = useState("");
   useEffect(() => {
     if(remoteConfig !== null) {
@@ -8,6 +8,6 @@ export default function RemoteText({remoteConfig, store, className}) {
     }
   }, [remoteConfig])
 	return (
-		<p className={className}>{value}</p>
+		<p className={className} style={style}>{value}</p>
 	)
 }
