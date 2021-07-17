@@ -15,7 +15,12 @@ function MyApp({ Component, pageProps }) {
   const [userData, setUserData] = useState(null);
   const [remoteConfig, setRemoteConfig] = useState(null);
   const [analytics, setAnalytics] = useState(null);
-  const [theme, setTheme] = useLocalStorage("theme", {name: "light"});
+  const [theme, setTheme] = useLocalStorage("theme", {
+    global: 'light',
+    fonts: {
+      header: 'Barlow'
+    }
+  });
   useEffect(async () => {
     if (process?.browser) {
       const remoteConfig = firebase.remoteConfig();
@@ -68,6 +73,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>EBDM.DEV</title>
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet" />
       </Head>
       <Component {...pageProps} remoteConfig={remoteConfig} user={user} setLoading={setLoading}/>
     </Layout>
