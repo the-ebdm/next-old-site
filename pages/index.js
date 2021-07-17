@@ -152,7 +152,7 @@ export default function Home({ remoteConfig, user, posts, quotes, login }) {
                   <div className="aspect-w-10 aspect-h-6 rounded-xl shadow-xl overflow-hidden sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
                     <img
                       className="object-cover lg:h-full lg:w-full"
-                      src="/woman.webp"
+                      src={quote.Img}
                       alt=""
                     />
                   </div>
