@@ -46,7 +46,7 @@ export async function getServerSideProps() {
 
 export default function Home({ remoteConfig, user, posts, quotes, login }) {
   const [quote] = useDocumentDataOnce(
-    db.collection("Quotes").doc("yourworstenemycannot")
+    db.collection("Quotes").doc("yesiamadreamerfora")
   );
   const [cvintro, setCVIntro] = useState(null);
   useEffect(() => {
