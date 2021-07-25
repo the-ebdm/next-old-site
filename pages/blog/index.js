@@ -13,7 +13,7 @@ const database = {
   blog: "3a58bc30-8715-46d4-814f-ed9f777b2a72",
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const client = new NotionAPI();
   const { results } = await notion.databases.query({
     database_id: database.blog,

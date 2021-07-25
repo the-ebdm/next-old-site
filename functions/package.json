@@ -14,7 +14,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@ebdm/linkedin-profile-scraper": "^2.3.5",
+    "@ebdm/linkedin-profile-scraper": "2.3.6",
     "firebase-admin": "^9.2.0",
     "firebase-functions": "^3.11.0"
   },

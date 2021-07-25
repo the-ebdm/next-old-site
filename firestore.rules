@@ -1,15 +1,27 @@
 rules_version = '2';
 service cloud.firestore {
-  match /databases/MailingList/documents {
-    match /{document=**} {
-      allow write: if true;
-      allow read: if false;
-    }
-  }
-  match /databases/Quotes/documents {
-    match /{document=**} {
+  match /databases/{database}/documents {
+    match /Quotes/{quote} {
       allow read: if true;
       allow write: if false;
     }
+    match /Projects/{project} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /MailingList/{email} {
+      allow read: if false;
+      allow write: if true;
+    }
+    match /Contacts/{contact} {
+      allow read: if (request.auth.uid != null) && request.auth.token.email_verified;
+    }
+    match /Users/{userID} {
+      allow read: if request.auth.uid == userID
+      allow write:
+        if request.resource.data.mode in ['normal', 'advanced'] 
+          && request.resource.data.theme in ['light', 'dark']
+          && request.auth.uid == userID
+  }
   }
 }

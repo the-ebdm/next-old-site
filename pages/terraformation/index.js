@@ -3,10 +3,15 @@ import firebase from "../../lib/firebase";
 import Link from "next/link";
 import Form from "../../components/Molecule/form";
 import Header from "../../components/Atom/header";
+import { useEffect } from "react";
 
 const db = firebase.firestore();
 
 const addProject = {
+  onSubmit: event => {
+    event.preventDefault();
+    console.log("Submit")
+  },
   fields: [
     {
       name: "Name",
@@ -30,6 +35,11 @@ const addProject = {
       name: "Source Url",
       type: "text",
     },
+    {
+      name: "Select Modules",
+      type: "modules",
+      span: 2
+    }
   ],
 };
 

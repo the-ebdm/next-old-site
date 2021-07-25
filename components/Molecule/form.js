@@ -18,11 +18,8 @@ export default function Form({ title, schema, type, collection, onSubmit, collum
       >
         {schema.fields.map((item) => {
           return (
-            <div className="mr-2 ml-2">
-              <label
-                htmlFor="first_name"
-                className="block text-sm font-medium text-warm-gray-900"
-              >
+            <div className={`mr-2 ml-2 ${item.span ? 'col-span-2' : null}`}>
+              <label htmlFor="first_name" className="block text-sm font-medium text-warm-gray-900">
                 {item.name}
               </label>
               <div className="mt-1">

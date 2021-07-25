@@ -3,11 +3,11 @@ let parser = new Parser();
 const fs = require('fs');
 
 (async () => {
-
   let feed = await parser.parseURL('https://bariweiss.substack.com/feed');
-	fs.writeFile('feed.json', JSON.stringify(feed), (err) => {
-		if(err) throw err;
-		console.log("Done");
-	})
-
+	const { items } = feed;
+	console.log(items[0])
+	// items.forEach(item => {
+	// 	console.log(item.title)
+	// 	console.log(Object.keys(item))
+	// })
 })();

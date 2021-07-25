@@ -36,8 +36,16 @@ export default function CurriculumVitae({
     }
   }, [remoteConfig]);
   useEffect(() => {
-    console.log(contact);
-  }, [contact]);
+    if(contact) {
+      console.error(contact)
+    }
+    if(contactError) {
+      console.error(contactError)
+    }
+    if(loadingContact) {
+      console.error(loadingContact)
+    }
+  }, [contact, loadingContact, contactError]);
   const [tabs, setTabs] = useState([
     { name: "Profile", href: "#", current: true },
     { name: "Experience", href: "#", current: false },
@@ -252,7 +260,7 @@ export default function CurriculumVitae({
               {tabs[1].current === true ? (
                 <div className="mt-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                   <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                    {contact.Social.LinkedinProfile.experiences.map((exp) => {
+                    {profile.experiences.map((exp) => {
                       exp.id = idify(`${exp.title} ${exp.company}`);
                       return (
                         <div key={exp.id} className={"sm:col-span-2"}>

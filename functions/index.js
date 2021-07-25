@@ -84,10 +84,14 @@ exports.addLinkedinProfileToContact = functions.firestore
 exports.ingestHealthData = functions.https.onRequest((req, res) => {
   const batches = [];
   const data = req.body.data;
-  const itemCount =
-    data.metrics.flatMap((item) => {
-      return item.data;
-    }).length + 1;
+  const metricItemCount = data.metrics.flatMap((item) => {
+    return item.name;
+  }).length + 1;
+  const workoutItemCount = data.workouts.flatMap((item) => {
+    return item.id;
+  }).length + 1;
+  console.log(`Adding ${workoutItemCount} metric items`)
+  console.log(`Adding ${metricItemCount} metric items`)
   data.metrics.map((item) => {
     const metricRef = db.collection("HealthMetrics").doc(item.name);
 		batchWrite(metricRef, {
@@ -167,13 +171,13 @@ exports.addScoreToDiscordUser = functions.firestore
   }, { merge: true })
 });
 
-exports.addSourceToStorage = functions.firestore.document("Projects/{projId}").onWrite(async (change, context) => {
-  const before = change.before.data();
-  const newValue = change.after.data();
-  if(before.Source.Provider !== newValue.Source.Provider || before.Source.Url !== newValue.Source.Url) {
-    const { Provider, Url } = newValue.Source;
-    if( Provider === "GitHub" ) {
+// exports.addSourceToStorage = functions.firestore.document("Projects/{projId}").onWrite(async (change, context) => {
+//   const before = change.before.data();
+//   const newValue = change.after.data();
+//   if(before.Source.Provider !== newValue.Source.Provider || before.Source.Url !== newValue.Source.Url) {
+//     const { Provider, Url } = newValue.Source;
+//     if( Provider === "GitHub" ) {
       
-    }
-  }
-})
+//     }
+//   }
+// })
