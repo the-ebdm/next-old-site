@@ -1,1 +1,0 @@
-// ingest and combine: http://35.242.161.163/api/quotes
