@@ -5,8 +5,6 @@ export default function Home({ }) {
 
         {/* <!--Main Col--> */}
         <div id="profile" class="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0">
-
-
           <div class="p-4 md:p-12 text-center lg:text-left">
             {/* <!-- Image for mobile view--> */}
             <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"></div>
@@ -50,9 +48,8 @@ export default function Home({ }) {
         {/* <!--Img Col--> */}
         <div class="w-full lg:w-2/5">
           {/* <!-- Big profile image for side bar (desktop) --> */}
-          <img src="https://source.unsplash.com/MP0IUfwrn0A" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" />
+          <img src="/portrait_by_the_sea.jpeg" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" />
           {/* <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A --> */}
-
         </div>
 
 
