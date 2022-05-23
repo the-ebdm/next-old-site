@@ -7,7 +7,9 @@ export default function Home({ }) {
         <div id="profile" class="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0">
           <div class="p-4 md:p-12 text-center lg:text-left">
             {/* <!-- Image for mobile view--> */}
-            <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"></div>
+            <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{
+              backgroundImage: `url(/portrait_by_the_sea.jpeg)`
+            }}></div>
 
             <h1 class="text-3xl font-bold pt-8 lg:pt-0">Eric Muir</h1>
             <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
@@ -54,9 +56,9 @@ export default function Home({ }) {
 
 
         {/* <!-- Pin to top right corner --> */}
-        <div class="absolute top-0 right-0 h-12 w-18 p-4">
+        {/* <div class="absolute top-0 right-0 h-12 w-18 p-4">
           <button class="js-change-theme focus:outline-none">🌙</button>
-        </div>
+        </div> */}
 
       </div>
     </>
