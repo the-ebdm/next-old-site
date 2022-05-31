@@ -77,7 +77,16 @@ export default function Home({ }) {
       {/* <!--Img Col--> */}
       <div class="w-full lg:w-2/5">
         {/* <!-- Big profile image for side bar (desktop) --> */}
-        <img src="/portrait_by_the_sea.jpeg" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" />
+        <img src="/portrait_by_the_sea.jpeg" className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" onClick={event => {
+          const target = event.target;
+          target.animate([
+            { transform: 'rotate(0)' },
+            { transform: 'rotate(360deg)' }
+          ], {
+            duration: 2000,
+            iterations: 1
+          })
+        }}/>
         {/* <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A --> */}
       </div>
 
