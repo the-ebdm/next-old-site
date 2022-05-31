@@ -1,4 +1,6 @@
 import 'tailwindcss/tailwind.css'
+import 'tippy.js/dist/tippy.css';
+import '../assets/core.css'
 import Head from "next/head";
 import Script from "next/script";
 
