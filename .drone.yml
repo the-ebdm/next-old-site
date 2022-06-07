@@ -4,10 +4,10 @@ name: default
 
 steps:
   - name: now
-    image: one000mph/drone-now # Use one000mph's version as lucaperret's is outdated
+    image: one000mph/drone-now
     environment:
       NOW_TOKEN:
-        from_secret: now_token # Refers to a secret in your drone repo titled "NOW_TOKEN"
+        from_secret: now_token
     settings:
       secret: [now_token]
       deploy_name: personal-website
