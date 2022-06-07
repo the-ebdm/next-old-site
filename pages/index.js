@@ -57,7 +57,7 @@ export default function Home({ }) {
           </p>
           <p class="pt-8 text-sm">
             Hey, I'm Eric, a maker and breaker of mad tech, from insane electric vehicles to cloud software and infrastructure. 
-            I climb mountains, practice martial arts and bad kareoke my way into the morning. 
+            I climb mountains 🧗‍♂️, practice martial arts 🥋 and bad kareoke 🎤 my way into the morning. 
           </p>
           <p class="py-2 text-sm">
             Hit me up on one of the platforms below if you want to collaborate or even just natter!
