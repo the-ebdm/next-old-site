@@ -1,0 +1,14 @@
+---
+kind: pipeline
+name: default
+
+steps:
+  - name: now
+    image: one000mph/drone-now # Use one000mph's version as lucaperret's is outdated
+    environment:
+      NOW_TOKEN:
+        from_secret: now_token # Refers to a secret in your drone repo titled "NOW_TOKEN"
+    settings:
+      secret: [now_token]
+      deploy_name: personal-website
+      prod: true
