@@ -59,9 +59,9 @@ export default function Home({ }) {
             Hey, I'm Eric, a maker and breaker of mad tech, from insane electric vehicles to cloud software and infrastructure. 
             I climb mountains 🧗‍♂️, practice martial arts 🥋 and bad kareoke 🎤 my way into the morning. 
           </p>
-          <p class="py-2 text-sm">
+          {/* <p class="py-2 text-sm">
             Hit me up on one of the platforms below if you want to collaborate or even just natter!
-          </p>
+          </p> */}
           {/* <div class="pt-12 pb-8">
             <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
               Get In Touch
