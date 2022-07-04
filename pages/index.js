@@ -110,9 +110,12 @@ export async function getServerSideProps({ req, res }) {
   const cookies = new Cookies(req, res)
   const client = await getClient();
 
-  if (cookies.get('client-id')) {
+  let id = cookies.get('client-id')
+
+  if (id) {
+    console.log(`Welcome back ${id}`)
   } else {
-    const id = uuidv4();
+    id = uuidv4();
     cookies.set('client-id', id)
   }
 
