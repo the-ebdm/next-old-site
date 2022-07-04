@@ -3,11 +3,19 @@ kind: pipeline
 name: default
 
 steps:
-  - name: build
-    image: node:latest
-    commands:
-      - yarn
-  - name: now
+  - name: deploy-canary
+    image: one000mph/drone-now
+    environment:
+      NOW_TOKEN:
+        from_secret: now_token
+    settings:
+      secret: [now_token]
+      deploy_name: personal-website
+    when:
+      event:
+      - push
+      - pull_request
+  - name: deploy-prod
     image: one000mph/drone-now
     environment:
       NOW_TOKEN:
