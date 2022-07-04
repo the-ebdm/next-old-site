@@ -120,7 +120,7 @@ export async function getServerSideProps({ req, res }) {
   }
 
   let flags = await client.allFlagsState({
-    'key': cookies.get('client-id'),
+    'key': id,
     'anonymous': true
   })
 
