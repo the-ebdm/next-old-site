@@ -3,6 +3,10 @@ kind: pipeline
 name: default
 
 steps:
+  - name: build
+    image: node:latest
+    commands:
+      - yarn
   - name: now
     image: one000mph/drone-now
     environment:
@@ -12,3 +16,8 @@ steps:
       secret: [now_token]
       deploy_name: personal-website
       prod: true
+    when:
+      event:
+      - promote
+      target:
+      - production
