@@ -4,3 +4,7 @@
   background-attachment: fixed;
   background-size: cover;
 }
+
+.bg .profile {
+  background-color: rgba(255, 255, 255, 0.75);
+}
