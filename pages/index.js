@@ -1,13 +1,16 @@
 import Tippy from '@tippyjs/react';
+import Link from 'next/link';
 import personalData from '../me.json';
 
 function SocialIcons({ icons }) {
   return <div className="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
     {icons.map(({ url, icon: Icon, tooltip, name }) => {
       return <Tippy content={`${name}: ${tooltip}`} key={name}>
-        <a href={url} className={`umami--click--${name.toLowerCase()}`}>
-          {typeof Icon === 'function' ? <Icon /> : <img className="h-6 fill-current text-gray-600 hover:text-green-700" src={Icon}/>}
-        </a>
+        <Link href={url} passHref prefetch>
+          <a className={`umami--click--${name.toLowerCase()}`}>
+            {typeof Icon === 'function' ? <Icon /> : <img className="h-6 fill-current text-gray-600 hover:text-green-700" src={Icon}/>}
+          </a>
+        </Link>
       </Tippy>
     })}
   </div>
@@ -18,11 +21,11 @@ function Home({}) {
     <div className="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
 
       {/* <!--Main Col--> */}
-      <div id="profile" className="profile w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl mx-6 lg:mx-0">
+      <div id="profile" className="panel w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl mx-6 lg:mx-0">
         <div className="p-4 md:p-12 text-center lg:text-left">
           {/* <!-- Image for mobile view--> */}
           <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center opacity-100" style={{
-            backgroundImage: `url('/portrait_by_the_sea.jpeg')`
+            backgroundImage: `url('${personalData['profile-image-url']}')`
           }}></div>
 
           <h1 className="text-3xl font-bold pt-8 lg:pt-0">Eric Muir</h1>
@@ -58,7 +61,7 @@ function Home({}) {
       {/* <!--Img Col--> */}
       <div className="w-full lg:w-2/5">
         {/* <!-- Big profile image for side bar (desktop) --> */}
-        <img src="/portrait_by_the_sea.jpeg" className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" onClick={event => {
+        <img src={personalData['profile-image-url']} className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" onClick={event => {
           const target = event.target;
           target.animate([
             { transform: 'rotate(0)' },
