@@ -65,7 +65,7 @@ export default function RenderNotionBlock({
         className={style ? "py-4" : null}
       >
         <div style={typeof block?.format?.block_width === "number" ? {
-          width: `${block?.format?.block_width + 20}px`
+          maxWidth: `${block?.format?.block_width + 20}px`
         } : {}} className="mx-auto">
           <img
             onLoad={() => {
@@ -74,7 +74,6 @@ export default function RenderNotionBlock({
                 hasLoaded: true
               })
             }}
-            width={block?.format?.block_width}
             src={block.properties.source[0][0].includes('aws') ? `https://notion.so/image/${encodeURIComponent(block.properties.source[0][0])}?table=block&id=${block.id}&userId=&cache=v2`: block.properties.source[0][0]}
             className={style ? "mx-auto rounded-xl" : className}
           />
