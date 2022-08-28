@@ -14,6 +14,12 @@ export async function getStaticPaths() {
     const client = new NotionAPI();
     const { results } = await notion.databases.query({
         database_id: dbid,
+        filter: {
+            property: "Published",
+            checkbox: {
+                equals: true,
+            }
+        }
     });
 
     const ids = results.map(item => ({"params": {"post": item.id}}))
