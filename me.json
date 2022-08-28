@@ -27,7 +27,7 @@
             "name": "Blog",
             "tooltip": "My Inane Ramblings",
             "url": "/blog",
-            "icon": "/social/instagram.svg"
+            "icon": "/social/blog.png"
         }
     ]
 }
