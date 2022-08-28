@@ -3,7 +3,7 @@ import RenderNotionBlock from "../../components/Atom/renderBlock";
 
 export default function BlogPosts({ posts, header = false }) {
   return (
-    <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32 rounded-lg">
+    <div className="relative py-16 sm:py-24 lg:py-32 rounded-lg">
       <div className="relative">
         {header ? (
           <div className="text-center mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
@@ -18,7 +18,7 @@ export default function BlogPosts({ posts, header = false }) {
             </p>
           </div>
         ) : null}
-        <div className="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl">
+        <div className="mt-12 mx-auto max-w-md px-4 grid grid-cols-1 gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl">
           {posts.map((post) => {
             return (
               <Link href={`/blog/${post.id}`}>
