@@ -2,6 +2,7 @@
     "intro": "Hey, I'm Eric, a maker and breaker of mad tech, from insane electric vehicles to cloud software and infrastructure.             I climb mountains 🧗‍♂️, practice martial arts 🥋 and bad kareoke 🎤 my way into the morning.",
     "job-title": "Senior DevOps Engineer @ xDesign",
     "location": "Shrewsbury, UK | 52.7400° N, -2.7200° W",
+    "profile-image-url": "/portrait_by_the_sea.jpeg",
     "mailing-list": false,
     "social-icons": [
         {
@@ -20,6 +21,12 @@
             "name": "Instagram",
             "tooltip": "EricBDMuir",
             "url": "https://www.instagram.com/ericbdmuir/",
+            "icon": "/social/instagram.svg"
+        },
+        {
+            "name": "Blog",
+            "tooltip": "My Inane Ramblings",
+            "url": "/blog",
             "icon": "/social/instagram.svg"
         }
     ]
