@@ -7,6 +7,7 @@ import { recordMapParser } from "../../lib/notion";
 import RenderNotionBlock from "../../components/Atom/renderBlock";
 import BlogPosts from "../../components/Molecule/blogPosts";
 import BreadCrumbNav from "../../components/Atom/breadcrumbNav";
+import Panel from "../../components/Atom/panel";
 const notion = new Client({
     auth: process.env.NOTION_TOKEN,
 });
@@ -41,11 +42,10 @@ export default function Blog({ posts }) {
     return (
         <>
             <BreadCrumbNav pages={[{ name: 'Blog', href: '/blog', current: true }]} />
-            <div className="pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 w-3/4 mx-auto">
-                <div className="relative panel max-w-lg mx-auto divide-y-2 divide-gray-200 lg:max-w-7xl">
-                    <BlogPosts posts={posts} header={true} />
-                </div>
-            </div>
+            
+            <Panel header={{ title: "Latest Blog Posts", description: "Browse some of my latest blog posts" }}>
+                <BlogPosts posts={posts} header={true} />
+            </Panel>
         </>
     );
 }
