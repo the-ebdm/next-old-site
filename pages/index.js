@@ -73,13 +73,6 @@ function Home({}) {
             iterations: 1
           })
         }} />
-        {/* <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A --> */}
-      </div>
-
-
-      {/* <!-- Pin to top right corner --> */}
-      <div className="absolute top-0 right-0 h-12 w-18 p-4">
-        <button className="js-change-theme focus:outline-none">🌙</button>
       </div>
 
     </div>
