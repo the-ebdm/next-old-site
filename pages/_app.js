@@ -1,4 +1,3 @@
-import 'tailwindcss/tailwind.css'
 import 'tippy.js/dist/tippy.css';
 import '../assets/core.css'
 import Head from "next/head";
@@ -15,7 +14,7 @@ export default function App({ Component, pageProps }) {
       <Script
         async
         defer
-        data-website-id="9102799d-8243-4419-8e77-eaec872feaf8"
+        data-website-id={process.env.UMAMI_TOKEN}
         src="https://analytics.ebdm.dev/umami.js" />
       <Component {...pageProps} />
     </>
