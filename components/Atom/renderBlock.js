@@ -43,7 +43,7 @@ export default function RenderNotionBlock({
                   if (typeof url === "string") {
                     return (
                       <Link href={url} passHref>
-                        <a className="text-gray-600 hover:text-gray-900">{item[0]}</a>
+                        <a className="text-gray-600 hover:text-gray-900" target="_blank">{item[0]}</a>
                       </Link>
                     )
                   }
@@ -206,7 +206,7 @@ export default function RenderNotionBlock({
         console.log(Object.keys(block.format.related_external_object_uris_to_instance_ids).length)
         return (
           <Link href={block.format.uri} passHref>
-            <a className="bg-white border border-gray-300 hover:border-gray-500 p-4 rounded-lg flex">
+            <a className="bg-white border border-gray-300 hover:border-gray-500 p-4 rounded-lg flex" target="_blank">
               {block.format.domain === "github.com" ? (
                 <img className="h-6 fill-current text-gray-600 hover:text-green-700" src="/social/github.svg" />
               ) : null}
