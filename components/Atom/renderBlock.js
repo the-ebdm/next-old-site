@@ -5,11 +5,13 @@ import "highlight.js/styles/atom-one-dark.css";
 import Image from "next/image";
 import { backgroundImage, backgroundPosition } from "tailwindcss/defaultTheme";
 import { useState } from "react";
+import Link from "next/link";
 
 hljs.registerLanguage("javascript", javascript);
 
 export default function RenderNotionBlock({
   block,
+  pageSlug,
   style = true,
   className = "",
   imgCaption = true,
@@ -33,7 +35,22 @@ export default function RenderNotionBlock({
                 case "b":
                   return <span className="font-bold">{item[0]}</span>;
 
+                case "i":
+                  return <span className="italic">{item[0]}</span>;
+
+                case "a":
+                  const url = item[1][0][1];
+                  if (typeof url === "string") {
+                    return (
+                      <Link href={url} passHref>
+                        <a className="text-gray-600 hover:text-gray-900">{item[0]}</a>
+                      </Link>
+                    )
+                  }
+                  break;
+
                 default:
+                  console.log(style);
                   break;
               }
             }
@@ -180,11 +197,33 @@ export default function RenderNotionBlock({
         </div>
       );
 
+    case "external_object_instance":
+      const attributes = block.format.attributes.reduce((obj, item) => Object.assign(obj, { [item.id]: item }), {});;
+
+      console.log(attributes)
+
+      if (block.parent_id === pageSlug) {
+        console.log(Object.keys(block.format.related_external_object_uris_to_instance_ids).length)
+        return (
+          <Link href={block.format.uri} passHref>
+            <a className="bg-white border border-gray-300 hover:border-gray-500 p-4 rounded-lg flex">
+              {block.format.domain === "github.com" ? (
+                <img className="h-6 fill-current text-gray-600 hover:text-green-700" src="/social/github.svg" />
+              ) : null}
+              <p className="pl-4">
+                {attributes.title.values[0]}
+              </p>
+            </a>
+          </Link>
+        )
+      }
+
     case "page":
       return <></>;
 
     case "collection_view_page":
       return <></>;
+
 
     default:
       console.log(block)
