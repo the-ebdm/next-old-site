@@ -11,11 +11,6 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet" />
       </Head>
-      <Script
-        async
-        defer
-        data-website-id={process.env.UMAMI_TOKEN}
-        src="https://analytics.ebdm.dev/umami.js" />
       <Component {...pageProps} />
     </>
   )

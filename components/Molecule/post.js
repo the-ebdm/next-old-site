@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
-import { recordMapParser } from "../../lib/notion";
 import Panel from "../Atom/panel";
 import RenderNotionBlock from "../Atom/renderBlock";
 import { useScript } from "../../lib/hooks";
 
 export default function Post({ post, recordMap }) {
   const comment = useRef(null);
-  const status = useScript({
+
+  useScript({
     url: "https://utteranc.es/client.js",
     theme: "github-light",
     issueTerm: "pathname",
@@ -26,14 +26,14 @@ export default function Post({ post, recordMap }) {
               {post.properties.Name.title[0].plain_text}
             </span>
           </h1>
-          {post.properties.hasOwnProperty('Description') ? (
+          { post.properties.Description.rich_text.length > 0 ? (
             <p className="mt-8 text-xl text-gray-500 leading-8 text-center">
               {post.properties.Description.rich_text[0].plain_text}
             </p>
-          ) : null}
+          ) : null }
         </div>
         <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-          {recordMapParser(recordMap).map((block) => (
+          {recordMap.map((block) => (
             <RenderNotionBlock block={block} pageSlug={post.id} key={block.id} />
           ))}
           {
