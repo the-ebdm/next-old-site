@@ -11,6 +11,11 @@ export default function Document() {
           <button className="js-change-theme focus:outline-none">🌙</button>
         </div> */}
       </body>
+      <script
+        async
+        defer
+        data-website-id={process.env.UMAMI_TOKEN}
+        src="https://analytics.ebdm.dev/umami.js" />
     </Html>
   )
 }
