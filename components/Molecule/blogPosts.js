@@ -23,7 +23,7 @@ export default function BlogPosts({ posts }) {
                   {post.properties.Name.title[0].plain_text}
                 </h3>
                 <p className="mt-3 text-base text-gray-500">
-                  {post.properties.Description.rich_text[0].plain_text}
+                  { post.properties.Description.rich_text.length > 0 ? post.properties.Description.rich_text[0].plain_text : null }
                 </p>
               </div>
               <div className="m-6 flex items-center">

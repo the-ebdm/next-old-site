@@ -1,40 +1,16 @@
-import axios from "axios";
-import Link from "next/link";
-
-import { NotionAPI } from "notion-client";
-import { Client } from "@notionhq/client";
-import { recordMapParser } from "../../lib/notion";
-import RenderNotionBlock from "../../components/Atom/renderBlock";
+import { getPublishedArticlesWithBlocks } from "../../lib/notion";
 import BlogPosts from "../../components/Molecule/blogPosts";
 import BreadCrumbNav from "../../components/Atom/breadcrumbNav";
 import Panel from "../../components/Atom/panel";
-const notion = new Client({
-    auth: process.env.NOTION_TOKEN,
-});
-const database = {
-    blog: "3a58bc30-8715-46d4-814f-ed9f777b2a72",
-};
 
 export async function getStaticProps() {
-    const client = new NotionAPI();
-    const { results } = await notion.databases.query({
-        database_id: database.blog,
-    });
-    const posts = await Promise.all(
-        results.filter(item => item.properties.Published.checkbox === true).map((item) => {
-            return client.getPage(item.id).then((blocks) => {
-                return {
-                    ...item,
-                    blocks: recordMapParser(blocks),
-                };
-            });
-        })
-    );
+    const posts = await getPublishedArticlesWithBlocks();
 
     return {
         props: {
             posts: posts,
         },
+        revalidate: 10,
     };
 }
 
