@@ -9,8 +9,7 @@ export async function getStaticPaths() {
     const ids = results.map(item => ({ "params": { "post": item.id } }))
 
     return {
-        paths: ids,
-        fallback: false
+        paths: ids, fallback: 'blocking'
     }
 }
 
