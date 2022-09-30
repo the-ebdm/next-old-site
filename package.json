@@ -9,7 +9,7 @@
     "seed": "node scripts/seed.js"
   },
   "dependencies": {
-    "@headlessui/react": "^1.2.0",
+    "@headlessui/react": "1.7.3",
     "@heroicons/react": "1.0.6",
     "@notionhq/client": "^0.1.8",
     "@tailwindcss/aspect-ratio": "^0.2.1",
