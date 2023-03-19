@@ -59,7 +59,7 @@ export default function RenderNotionBlock({
         </p>
       );
 
-    case "sub_heading":
+    case "sub_heading" || "sub_header":
       return (
         <h2
           key={key}
