@@ -49,6 +49,9 @@ export default function RenderNotionBlock({
                   }
                   break;
 
+                case "c":
+                  return <span className="code">{item[0]}</span>;
+
                 default:
                   console.log(style);
                   break;
