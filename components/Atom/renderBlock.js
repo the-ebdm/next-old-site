@@ -59,21 +59,13 @@ export default function RenderNotionBlock({
         </p>
       );
 
-    case "sub_heading" || "sub_header":
-      return (
-        <h2
-          key={key}
-          className={`mt-3 my-5 mx-10 block text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-xl`}
-        >
-          {block?.properties?.title[0]}
-        </h2>
-      );
-
+    case "sub_heading": 
+    case "sub_header":
     case "sub_sub_heading":
       return (
         <h2
           key={key}
-          className={`mt-3 my-5 mx-10 block text-xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-xl`}
+          className={`mt-3 my-5 mx-10 block text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-xl`}
         >
           {block?.properties?.title[0]}
         </h2>
@@ -224,6 +216,15 @@ export default function RenderNotionBlock({
     case "collection_view_page":
       return <></>;
 
+    
+    case "numbered_list":
+      return (
+        <ol key={key} className="list-decimal list-inside">
+          {block?.properties?.title[0].map((item, index) => {
+            return <li key={index}>{item}</li>;
+          })}
+        </ol>
+      );
 
     default:
       console.log(block)
